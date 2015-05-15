@@ -68,14 +68,14 @@ public class SimpleClusterListener extends UntypedActor{
 
     private void sendMessage(ForwardedMessage message) throws IOException {
         ByteArrayOutputStream b = new ByteArrayOutputStream();
-        ObjectOutput out = new ObjectOutputStream(b);
-        out.writeObject(message.getMessageContent());
-        byte[] msgBytes = b.toByteArray();
+        ObjectOutput output = new ObjectOutputStream(b);
+        output.writeObject(message.getMessageContent());
+        byte[] bytes = b.toByteArray();
 
         for (Member member : members) {
             if (allowForward(member, message.getDestAddress())) {
                 getContext().actorSelection(member.address() + CLUSTER_PATH)
-                        .tell(msgBytes, getSender());
+                        .tell(bytes, getSender());
             }
         }
     }
