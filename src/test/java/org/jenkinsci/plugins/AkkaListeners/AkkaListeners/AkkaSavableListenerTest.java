@@ -6,6 +6,9 @@ import akka.actor.Props;
 import akka.testkit.TestActorRef;
 
 import org.jenkinsci.plugins.AkkaListeners.ActorRefs.SavableListenerActor;
+import org.jenkinsci.plugins.AkkaListeners.ActorRefs.SimpleClusterListener;
+import org.jenkinsci.plugins.AkkaListeners.Message.ForwardedMessage;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,40 +28,36 @@ import static org.junit.Assert.*;
 public class AkkaSavableListenerTest {
 
     ActorSystem system = ActorSystem.apply();
-    AkkaSavableListener unitUnderTest;
 
     private TestActorRef<SavableListenerActor> savableActorRef;
+    private TestActorRef<SimpleClusterListener> clusterActorRef;
 
     @Before
     public void setUp() throws Exception {
         savableActorRef = TestActorRef.create(system, Props.create(SavableListenerActor.class), "savableTest");
+        clusterActorRef = TestActorRef.create(system, Props.create(SimpleClusterListener.class), "clusterTest");
         //Mockito.mock(savableActorRef);
         //unitUnderTest =  new AkkaSavableListener();
         //unitUnderTest.setSavableActorRef(savableActorRef);
         //Mockito.doNothing().when(savableActorRef).tell("onChange", ActorRef.noSender());
     }
 
-    /*@Test
+    @Test
     public void testChanged(){
         AkkaSavableListener listener = new AkkaSavableListener();
         listener.setSavableActorRef(savableActorRef);
+        listener.setClusterActorRef(clusterActorRef);
         assertNotNull(listener.getSavableActorRef());
+        assertNotNull(listener.getClusterActorRef());
         listener.onChange(null, null);
-        assertEquals("onChange", savableActorRef.underlyingActor().getLastMessage());
-    }
-
-    @Test
-    public void testOnSaved(){
-        savableActorRef.tell("onChange", ActorRef.noSender());
         assertEquals(savableActorRef.underlyingActor().getLastMessage(), "onChange");
+        assertEquals(clusterActorRef.underlyingActor().getLastMsg().getClass(), ForwardedMessage.class);
+        system.shutdown();
     }
 
-    /*@Test
-    public void testChanged(){
-        //AkkaSavableListener listener = new AkkaSavableListener();
-        unitUnderTest.onChange(null, null);
-        //Mockito.verify(savableActorRef, Mockito.times(1)).tell("onChange", ActorRef.noSender());
-    }*/
-
+    @After
+    public void tearDown(){
+        system.shutdown();
+    }
 
 }

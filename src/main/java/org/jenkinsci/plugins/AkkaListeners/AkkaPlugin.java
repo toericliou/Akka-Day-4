@@ -18,7 +18,7 @@ import org.jenkinsci.plugins.AkkaListeners.ActorRefs.*;
 @Log4j2
 public class AkkaPlugin extends Plugin {
 
-    private ActorSystem system = ActorSystem.create();
+    private final ActorSystem system = ActorSystem.create("ClusterSystem");
 
     @Getter
     private static ActorRef itemListenerActorRef;
@@ -38,7 +38,9 @@ public class AkkaPlugin extends Plugin {
     @Override
     public void start(){
         log.info("Plugin Start");
-        startup(new String[]{"2552"});
+        //startup(new String[]{"2552"});
+        clusterListener = system.actorOf(Props.create(SimpleClusterListener.class), "clusterListener");
+
         log.info("Startup Called: Ports configured");
         itemListenerActorRef = system.actorOf(Props.create(ItemListenerActor.class));
         runListenerActorRef = system.actorOf(Props.create(RunListenerActor.class));
@@ -50,16 +52,15 @@ public class AkkaPlugin extends Plugin {
     private void startup(String[] ports){
         for (String port : ports) {
             // Override the configuration of the port
-            Config config = ConfigFactory.parseString(
-                    "akka.remote.netty.tcp.port=" + port).withFallback(
-                    ConfigFactory.load());
 
             // Create an Akka system
-            system = ActorSystem.create("ClusterSystem", config);
 
-            // Create an actor that handles cluster domain events
-            clusterListener = system.actorOf(Props.create(SimpleClusterListener.class),
-                    "clusterListener");
         }
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        system.shutdown();
     }
 }

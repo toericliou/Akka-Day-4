@@ -4,10 +4,22 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.TestActorRef;
+import akka.testkit.TestProbe;
+import com.sun.mail.imap.protocol.Item;
 import org.jenkinsci.plugins.AkkaListeners.ActorRefs.ItemListenerActor;
 import org.jenkinsci.plugins.AkkaListeners.ActorRefs.SavableListenerActor;
+import org.jenkinsci.plugins.AkkaListeners.ActorRefs.SimpleClusterListener;
+import org.jenkinsci.plugins.AkkaListeners.Message.ForwardedMessage;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -22,48 +34,57 @@ public class AkkaItemListenerTest {
 
     private TestActorRef<ItemListenerActor> itemActorRef;
 
+    private TestActorRef<SimpleClusterListener> clusterActorRef;
+
     @Before
     public void setUp() throws Exception {
-        itemActorRef = TestActorRef.create(system, Props.create(ItemListenerActor.class), "itemTest");
-    }
-
-    /*@Test
-    //Test Actor onReceive
-    public void testOnRecieve(){
-        itemActorRef.tell("Item Created", ActorRef.noSender());
-        assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Created");
-        itemActorRef.tell("Item Deleted", ActorRef.noSender());
-        assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Deleted");
-        itemActorRef.tell("Item Renamed", ActorRef.noSender());
-        assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Renamed");
+        itemActorRef = TestActorRef.create(system, Props.create(ItemListenerActor.class), "runTest");
+        clusterActorRef = TestActorRef.create(system, Props.create(SimpleClusterListener.class), "clusterTest");
     }
 
     @Test
-    public void testCreated(){
+    public void testCreated() throws Exception{
         AkkaItemListener listener = new AkkaItemListener();
         listener.setItemActorRef(itemActorRef);
+        listener.setClusterActorRef(clusterActorRef);
         assertNotNull(listener.getItemActorRef());
+        assertNotNull(listener.getClusterActorRef());
         listener.onCreated(null);
-        assertEquals("Item Created", itemActorRef.underlyingActor().getMessage());
+        assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Created");
+        assertEquals(clusterActorRef.underlyingActor().getLastMsg().getClass(), ForwardedMessage.class);
+        system.shutdown();
     }
 
     @Test
     public void testDeleted(){
         AkkaItemListener listener = new AkkaItemListener();
         listener.setItemActorRef(itemActorRef);
+        listener.setClusterActorRef(clusterActorRef);
         assertNotNull(listener.getItemActorRef());
+        assertNotNull(listener.getClusterActorRef());
         listener.onDeleted(null);
-        assertEquals("Item Deleted", itemActorRef.underlyingActor().getMessage());
+        assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Deleted");
+        assertEquals(clusterActorRef.underlyingActor().getLastMsg().getClass(), ForwardedMessage.class);
+        system.shutdown();
     }
 
     @Test
     public void testRenamed(){
         AkkaItemListener listener = new AkkaItemListener();
         listener.setItemActorRef(itemActorRef);
+        listener.setClusterActorRef(clusterActorRef);
         assertNotNull(listener.getItemActorRef());
+        assertNotNull(listener.getClusterActorRef());
         listener.onRenamed(null, null, null);
-        assertEquals("Item Renamed", itemActorRef.underlyingActor().getMessage());
-    }*/
+        assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Renamed");
+        assertEquals(clusterActorRef.underlyingActor().getLastMsg().getClass(), ForwardedMessage.class);
+        system.shutdown();
+    }
+
+    @After
+    public void tearDown(){
+        system.shutdown();
+    }
 
 
 }

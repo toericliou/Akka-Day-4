@@ -9,6 +9,7 @@ import hudson.model.Result;
 import lombok.Getter;
 import lombok.Setter;
 import org.jenkinsci.plugins.AkkaListeners.AkkaPlugin;
+import org.jenkinsci.plugins.AkkaListeners.Message.ForwardedMessage;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -25,9 +26,14 @@ public class AkkaBuildListener implements BuildListener {
     @Setter
     private ActorRef buildListenerActorRef = AkkaPlugin.getBuildListenerActorRef();
 
+    @Getter
+    @Setter
+    private ActorRef clusterActorRef = AkkaPlugin.getClusterListener();
+
     @Override
     public void started(List<Cause> list) {
         buildListenerActorRef.tell("Started", ActorRef.noSender());
+        clusterActorRef.tell(new ForwardedMessage("Build Started"), buildListenerActorRef);
     }
 
     @Override

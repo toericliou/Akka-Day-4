@@ -1,0 +1,10 @@
+[INFO] [05/19/2015 14:31:36.911] [main] [Remoting] Starting remoting
+[INFO] [05/19/2015 14:31:37.158] [main] [Remoting] Remoting started; listening on addresses :[akka.tcp://ClusterSystem@127.0.0.1:2552]
+[INFO] [05/19/2015 14:31:37.225] [main] [Cluster(akka://ClusterSystem)] Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Starting up...
+[INFO] [05/19/2015 14:31:37.339] [main] [Cluster(akka://ClusterSystem)] Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Registered cluster JMX MBean [akka:type=Cluster]
+[INFO] [05/19/2015 14:31:37.340] [main] [Cluster(akka://ClusterSystem)] Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Started up successfully
+[INFO] [05/19/2015 14:31:37.354] [ClusterSystem-akka.actor.default-dispatcher-4] [Cluster(akka://ClusterSystem)] Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+[INFO] [05/19/2015 14:31:37.368] [ClusterSystem-akka.actor.default-dispatcher-4] [Cluster(akka://ClusterSystem)] Cluster Node [akka.tcp://ClusterSystem@127.0.0.1:2552] - Metrics collection has started successfully
+14:31:37.371 [main] INFO  org.jenkinsci.plugins.AkkaListeners.AkkaPlugin - Plugin Start
+14:31:37.467 [main] INFO  org.jenkinsci.plugins.AkkaListeners.AkkaPlugin - Startup Called: Ports configured
+14:31:37.494 [main] INFO  org.jenkinsci.plugins.AkkaListeners.AkkaPlugin - Listeners Created

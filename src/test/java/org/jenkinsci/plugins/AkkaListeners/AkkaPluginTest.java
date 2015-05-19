@@ -17,12 +17,13 @@ public class AkkaPluginTest {
         unitUnderTest = new AkkaPlugin();
     }
 
-    /*@Test
+    @Test
     public void start(){
         unitUnderTest.start();
         assertNotNull(unitUnderTest.getBuildListenerActorRef());
         assertNotNull(unitUnderTest.getItemListenerActorRef());
         assertNotNull(unitUnderTest.getSavableListenerActorRef());
         assertNotNull(unitUnderTest.getRunListenerActorRef());
-    }*/
+        assertNotNull(unitUnderTest.getClusterListener());
+    }
 }

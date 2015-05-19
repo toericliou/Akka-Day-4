@@ -6,6 +6,9 @@ import akka.actor.Props;
 import akka.testkit.TestActorRef;
 import org.jenkinsci.plugins.AkkaListeners.ActorRefs.ItemListenerActor;
 import org.jenkinsci.plugins.AkkaListeners.ActorRefs.RunListenerActor;
+import org.jenkinsci.plugins.AkkaListeners.ActorRefs.SimpleClusterListener;
+import org.jenkinsci.plugins.AkkaListeners.Message.ForwardedMessage;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,34 +23,42 @@ public class AkkaRunListenerTest {
 
     private TestActorRef<RunListenerActor> runActorRef;
 
+    private TestActorRef<SimpleClusterListener> clusterActorRef;
+
     @Before
     public void setUp() throws Exception {
         runActorRef = TestActorRef.create(system, Props.create(RunListenerActor.class), "runTest");
-    }
-
-    /*@Test
-    public void testOnRecieve(){
-        runActorRef.tell("Run Started", ActorRef.noSender());
-        assertEquals(runActorRef.underlyingActor().getMessage(), "Run Started");
-        runActorRef.tell("Run Completed", ActorRef.noSender());
-        assertEquals(runActorRef.underlyingActor().getMessage(), "Run Completed");
+        clusterActorRef = TestActorRef.create(system, Props.create(SimpleClusterListener.class), "clusterTest");
     }
 
     @Test
     public void testOnStart(){
         AkkaRunListener listener = new AkkaRunListener();
         listener.setRunListener(runActorRef);
+        listener.setClusterActorRef(clusterActorRef);
         assertNotNull(listener.getRunListener());
-        listener.onStarted(null,null);
-        assertEquals("Run Started", runActorRef.underlyingActor().getMessage());
+        assertNotNull(listener.getClusterActorRef());
+        listener.onStarted(null, null);
+        assertEquals(runActorRef.underlyingActor().getMessage(), "Run Started");
+        assertEquals(clusterActorRef.underlyingActor().getLastMsg().getClass(), ForwardedMessage.class);
+        system.shutdown();
     }
 
     @Test
     public void testOnCompleted(){
         AkkaRunListener listener = new AkkaRunListener();
         listener.setRunListener(runActorRef);
+        listener.setClusterActorRef(clusterActorRef);
         assertNotNull(listener.getRunListener());
+        assertNotNull(listener.getClusterActorRef());
         listener.onCompleted(null, null);
         assertEquals("Run Completed", runActorRef.underlyingActor().getMessage());
-    }*/
+        assertEquals(clusterActorRef.underlyingActor().getLastMsg().getClass(), ForwardedMessage.class);
+        system.shutdown();
+    }
+
+    @After
+    public void tearDown(){
+        system.shutdown();
+    }
 }

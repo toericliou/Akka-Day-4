@@ -7,6 +7,7 @@ import akka.cluster.ClusterEvent.*;
 import akka.cluster.Member;
 import akka.util.ByteStringBuilder;
 import com.sun.mail.iap.ByteArray;
+import lombok.Getter;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.IOUtils;
 import org.jenkinsci.plugins.AkkaListeners.Message.ForwardedMessage;
@@ -21,11 +22,14 @@ import java.util.List;
 
 @Log4j2
 public class SimpleClusterListener extends UntypedActor{
-
-    Cluster cluster = Cluster.get(getContext().system());
+    @Getter
+    private Cluster cluster = Cluster.get(getContext().system());
     private List<Member> members = new ArrayList<Member>();
 
     private static final String CLUSTER_PATH = "/user/clusterListener";
+
+    @Getter
+    private Object lastMsg;
 
     @Override
     public void preStart(){
@@ -44,56 +48,53 @@ public class SimpleClusterListener extends UntypedActor{
             MemberUp mUp = (MemberUp) message;
             members.add(mUp.member());
             log.info("Member is Up: {}", mUp.member());
+            lastMsg = message;
         } else if (message instanceof UnreachableMember) {
             UnreachableMember mUnreachable = (UnreachableMember) message;
             log.info("Member detected as unreachable: {}", mUnreachable.member());
+            lastMsg = message;
 
         } else if (message instanceof MemberRemoved) {
             MemberRemoved mRemoved = (MemberRemoved) message;
             log.info("Member is Removed: {}", mRemoved.member());
             members.remove(mRemoved.member());
-        } else if (message instanceof byte[]) {
-                log.info("Message Being Processed");
-                convertMessage((byte[]) message);
-        } else if (message instanceof MemberEvent) {
+            lastMsg = message;
+        }  else if (message instanceof MemberEvent) {
             // ignore
         } else if (message instanceof ForwardedMessage){
             log.info("Message Sent");
             sendMessage((ForwardedMessage) message);
-        }  else {
+            lastMsg= message;
+        } else if (message instanceof byte[]) {
+            log.info("Message Being Processed");
+            convertMessage((byte[]) message);
+            lastMsg = message;
+        } else {
             unhandled(message);
         }
 
     }
 
     private void sendMessage(ForwardedMessage message) throws IOException {
-        ByteArrayOutputStream b = new ByteArrayOutputStream();
-        ObjectOutput output = new ObjectOutputStream(b);
-        output.writeObject(message.getMessageContent());
-        byte[] bytes = b.toByteArray();
-
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutput out = new ObjectOutputStream(bos);
+        out.writeObject(message.getMessageContent());
+        byte[] msgBytes = bos.toByteArray();
         for (Member member : members) {
-            if (allowForward(member, message.getDestAddress())) {
-                getContext().actorSelection(member.address() + CLUSTER_PATH)
-                        .tell(bytes, getSender());
+            if (member.address().toString().equals("akka.tcp://ClusterSystem@127.0.0.1:2551")) {
+                getContext().actorSelection(member.address() + CLUSTER_PATH).tell(msgBytes, getSender());
             }
         }
     }
 
     private void convertMessage(byte[] message) throws IOException, ClassNotFoundException {
-        ByteArrayInputStream b = new ByteArrayInputStream(message);
-        byte[] bytes = IOUtils.toByteArray(b);
-        String passedMsg = new String(bytes);
 
-        log.info("****************" + passedMsg + "******************");
-    }
-    private boolean allowForward(Member member, String destAddress) {
-        if (destAddress == null) {
-            return true;
-        } else if (destAddress.equals(member.address().toString())) {
-            return true;
-        }
-        return false;
+        ByteArrayInputStream bis = new ByteArrayInputStream(message);
+        ObjectInput in = new ObjectInputStream(bis);
+        String s = (String) in.readObject();
+
+        log.info("****************" + s + "******************");
+
     }
 
 }

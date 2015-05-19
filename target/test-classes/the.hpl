@@ -4,29 +4,29 @@ Group-Id: org.jenkins-ci.plugins
 Short-Name: Akka-Cluster
 Long-Name: TODO Plugin
 Url: https://wiki.jenkins-ci.org/display/JENKINS/TODO+Plugin
-Plugin-Version: 1.0-SNAPSHOT (private-05/15/2015 16:33-eerilio)
+Plugin-Version: 1.0-SNAPSHOT (private-dc9cc00b-eerilio)
 Hudson-Version: 1.580.1
 Jenkins-Version: 1.580.1
 Plugin-Developers: 
 Libraries: /home/eerilio/Documents/Akka/Akka-Cluster/target/classes,/h
- ome/eerilio/.m2/repository/io/netty/netty/3.8.0.Final/netty-3.8.0.Fin
- al.jar,/home/eerilio/.m2/repository/org/apache/logging/log4j/log4j-sl
- f4j-impl/2.1/log4j-slf4j-impl-2.1.jar,/home/eerilio/.m2/repository/co
- m/typesafe/akka/akka-actor_2.11/2.3.9/akka-actor_2.11-2.3.9.jar,/home
- /eerilio/.m2/repository/org/uncommons/maths/uncommons-maths/1.2.2a/un
- commons-maths-1.2.2a.jar,/home/eerilio/.m2/repository/junit/junit/4.1
- 2/junit-4.12.jar,/home/eerilio/.m2/repository/org/apache/logging/log4
- j/log4j-core/2.1/log4j-core-2.1.jar,/home/eerilio/.m2/repository/com/
- typesafe/akka/akka-cluster_2.11/2.3.9/akka-cluster_2.11-2.3.9.jar,/ho
- me/eerilio/.m2/repository/org/projectlombok/lombok/1.14.8/lombok-1.14
- .8.jar,/home/eerilio/.m2/repository/org/scala-lang/scala-library/2.11
- .5/scala-library-2.11.5.jar,/home/eerilio/.m2/repository/com/typesafe
- /config/1.2.1/config-1.2.1.jar,/home/eerilio/.m2/repository/org/slf4j
- /slf4j-api/1.7.7/slf4j-api-1.7.7.jar,/home/eerilio/.m2/repository/org
- /apache/logging/log4j/log4j-api/2.1/log4j-api-2.1.jar,/home/eerilio/.
- m2/repository/com/typesafe/akka/akka-remote_2.11/2.3.9/akka-remote_2.
- 11-2.3.9.jar,/home/eerilio/.m2/repository/com/google/protobuf/protobu
- f-java/2.5.0/protobuf-java-2.5.0.jar,/home/eerilio/.m2/repository/org
- /hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+ ome/eerilio/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-co
+ re-1.3.jar,/home/eerilio/.m2/repository/com/typesafe/akka/akka-cluste
+ r_2.11/2.3.9/akka-cluster_2.11-2.3.9.jar,/home/eerilio/.m2/repository
+ /org/apache/logging/log4j/log4j-core/2.1/log4j-core-2.1.jar,/home/eer
+ ilio/.m2/repository/com/typesafe/config/1.2.1/config-1.2.1.jar,/home/
+ eerilio/.m2/repository/org/scala-lang/scala-library/2.11.5/scala-libr
+ ary-2.11.5.jar,/home/eerilio/.m2/repository/org/uncommons/maths/uncom
+ mons-maths/1.2.2a/uncommons-maths-1.2.2a.jar,/home/eerilio/.m2/reposi
+ tory/org/projectlombok/lombok/1.14.8/lombok-1.14.8.jar,/home/eerilio/
+ .m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.1/log4j-sl
+ f4j-impl-2.1.jar,/home/eerilio/.m2/repository/com/typesafe/akka/akka-
+ remote_2.11/2.3.9/akka-remote_2.11-2.3.9.jar,/home/eerilio/.m2/reposi
+ tory/org/slf4j/slf4j-api/1.7.7/slf4j-api-1.7.7.jar,/home/eerilio/.m2/
+ repository/org/apache/logging/log4j/log4j-api/2.1/log4j-api-2.1.jar,/
+ home/eerilio/.m2/repository/junit/junit/4.12/junit-4.12.jar,/home/eer
+ ilio/.m2/repository/io/netty/netty/3.8.0.Final/netty-3.8.0.Final.jar,
+ /home/eerilio/.m2/repository/com/typesafe/akka/akka-actor_2.11/2.3.9/
+ akka-actor_2.11-2.3.9.jar,/home/eerilio/.m2/repository/com/google/pro
+ tobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.jar
 Resource-Path: /home/eerilio/Documents/Akka/Akka-Cluster/src/main/webapp
 
