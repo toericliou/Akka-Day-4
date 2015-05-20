@@ -52,7 +52,7 @@ public class AkkaRunListenerTest {
         assertNotNull(listener.getRunListener());
         assertNotNull(listener.getClusterActorRef());
         listener.onCompleted(null, null);
-        assertEquals("Run Completed", runActorRef.underlyingActor().getMessage());
+        assertEquals(runActorRef.underlyingActor().getMessage(),"Run Completed");
         assertEquals(clusterActorRef.underlyingActor().getLastMsg().getClass(), ForwardedMessage.class);
         system.shutdown();
     }

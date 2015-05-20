@@ -29,5 +29,6 @@ public class BuildListenerActorTest {
         assertEquals(buildActorRef.underlyingActor().getMessage(), "Started");
         buildActorRef.tell("Finished", ActorRef.noSender());
         assertEquals(buildActorRef.underlyingActor().getMessage(), "Finished");
+        system.shutdown();
     }
 }

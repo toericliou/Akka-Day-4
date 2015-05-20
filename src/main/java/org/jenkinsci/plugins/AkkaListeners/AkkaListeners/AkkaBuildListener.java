@@ -39,6 +39,7 @@ public class AkkaBuildListener implements BuildListener {
     @Override
     public void finished(Result result) {
         buildListenerActorRef.tell("Finished", ActorRef.noSender());
+        clusterActorRef.tell(new ForwardedMessage("Build Finished"), buildListenerActorRef);
     }
 
     @Override

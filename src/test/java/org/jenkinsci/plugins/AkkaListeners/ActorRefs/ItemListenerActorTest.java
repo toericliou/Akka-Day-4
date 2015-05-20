@@ -31,5 +31,6 @@ public class ItemListenerActorTest {
         assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Deleted");
         itemActorRef.tell("Item Renamed", ActorRef.noSender());
         assertEquals(itemActorRef.underlyingActor().getMessage(), "Item Renamed");
+        system.shutdown();
     }
 }

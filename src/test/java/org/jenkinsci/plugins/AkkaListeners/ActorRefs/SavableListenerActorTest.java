@@ -27,5 +27,6 @@ public class SavableListenerActorTest {
     public void onRecieve(){
         savableActorRef.tell("onChange", ActorRef.noSender());
         assertEquals(savableActorRef.underlyingActor().getLastMessage(), "onChange");
+        system.shutdown();
     }
 }

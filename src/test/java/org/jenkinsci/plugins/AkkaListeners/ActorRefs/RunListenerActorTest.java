@@ -29,5 +29,6 @@ public class RunListenerActorTest {
         assertEquals(runActorRef.underlyingActor().getMessage(), "Run Started");
         runActorRef.tell("Run Completed", ActorRef.noSender());
         assertEquals(runActorRef.underlyingActor().getMessage(), "Run Completed");
+        system.shutdown();
     }
 }

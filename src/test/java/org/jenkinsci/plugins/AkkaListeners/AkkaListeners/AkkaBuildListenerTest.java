@@ -32,14 +32,6 @@ public class AkkaBuildListenerTest {
     }
 
     @Test
-    public void testOnRecieve(){
-        buildActorRef.tell("Started", ActorRef.noSender());
-        assertEquals(buildActorRef.underlyingActor().getMessage(), "Started");
-        buildActorRef.tell("Finished", ActorRef.noSender());
-        assertEquals(buildActorRef.underlyingActor().getMessage(), "Finished");
-    }
-
-    @Test
     public void testStarted(){
         AkkaBuildListener listener = new AkkaBuildListener();
         listener.setBuildListenerActorRef(buildActorRef);

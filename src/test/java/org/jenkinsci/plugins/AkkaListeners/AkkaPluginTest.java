@@ -18,12 +18,13 @@ public class AkkaPluginTest {
     }
 
     @Test
-    public void start(){
+    public void start() throws Exception {
         unitUnderTest.start();
         assertNotNull(unitUnderTest.getBuildListenerActorRef());
         assertNotNull(unitUnderTest.getItemListenerActorRef());
         assertNotNull(unitUnderTest.getSavableListenerActorRef());
         assertNotNull(unitUnderTest.getRunListenerActorRef());
         assertNotNull(unitUnderTest.getClusterListener());
+        unitUnderTest.stop();
     }
 }

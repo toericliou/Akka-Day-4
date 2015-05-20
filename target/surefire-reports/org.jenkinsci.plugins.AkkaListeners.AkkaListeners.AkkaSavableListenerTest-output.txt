@@ -1,0 +1,13 @@
+[INFO] [05/20/2015 10:50:55.681] [ClusterSystem-akka.remote.default-remote-dispatcher-7] [akka.tcp://ClusterSystem@127.0.0.1:2552/system/remoting-terminator] Shutting down remote daemon.
+[INFO] [05/20/2015 10:50:55.684] [ClusterSystem-akka.remote.default-remote-dispatcher-7] [akka.tcp://ClusterSystem@127.0.0.1:2552/system/remoting-terminator] Remote daemon shut down; proceeding with flushing remote transports.
+[INFO] [05/20/2015 10:50:55.762] [main] [Remoting] Starting remoting
+[INFO] [05/20/2015 10:50:55.857] [main] [Remoting] Remoting started; listening on addresses :[akka.tcp://default@127.0.0.1:2552]
+[INFO] [05/20/2015 10:50:55.858] [main] [Cluster(akka://default)] Cluster Node [akka.tcp://default@127.0.0.1:2552] - Starting up...
+[INFO] [05/20/2015 10:50:55.871] [ClusterSystem-akka.remote.default-remote-dispatcher-7] [akka.tcp://ClusterSystem@127.0.0.1:2552/system/remoting-terminator] Remoting shut down.
+[INFO] [05/20/2015 10:50:55.884] [main] [Cluster(akka://default)] Cluster Node [akka.tcp://default@127.0.0.1:2552] - Started up successfully
+[INFO] [05/20/2015 10:50:55.893] [default-akka.actor.default-dispatcher-3] [Cluster(akka://default)] Cluster Node [akka.tcp://default@127.0.0.1:2552] - Metrics will be retreived from MBeans, and may be incorrect on some platforms. To increase metric accuracy add the 'sigar.jar' to the classpath and the appropriate platform-specific native libary to 'java.library.path'. Reason: java.lang.ClassNotFoundException: org.hyperic.sigar.Sigar
+[INFO] [05/20/2015 10:50:55.893] [default-akka.actor.default-dispatcher-3] [Cluster(akka://default)] Cluster Node [akka.tcp://default@127.0.0.1:2552] - Metrics collection has started successfully
+10:50:55.928 [main] INFO  org.jenkinsci.plugins.AkkaListeners.ActorRefs.SavableListenerActor - Savable Listener Recieved: Saved
+10:50:55.930 [main] INFO  org.jenkinsci.plugins.AkkaListeners.ActorRefs.SimpleClusterListener - Message Sent
+[INFO] [05/20/2015 10:50:55.946] [default-akka.remote.default-remote-dispatcher-9] [akka.tcp://default@127.0.0.1:2552/system/remoting-terminator] Shutting down remote daemon.
+[INFO] [05/20/2015 10:50:55.947] [default-akka.remote.default-remote-dispatcher-9] [akka.tcp://default@127.0.0.1:2552/system/remoting-terminator] Remote daemon shut down; proceeding with flushing remote transports.

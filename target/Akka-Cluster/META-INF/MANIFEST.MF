@@ -11,7 +11,7 @@ Group-Id: org.jenkins-ci.plugins
 Short-Name: Akka-Cluster
 Long-Name: TODO Plugin
 Url: https://wiki.jenkins-ci.org/display/JENKINS/TODO+Plugin
-Plugin-Version: 1.0-SNAPSHOT (private-dc9cc00b-eerilio)
+Plugin-Version: 1.0-SNAPSHOT (private-542e5ff6-eerilio)
 Hudson-Version: 1.580.1
 Jenkins-Version: 1.580.1
 Plugin-Developers: 
