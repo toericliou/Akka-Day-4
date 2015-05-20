@@ -31,30 +31,30 @@ import static org.mockito.Mockito.when;
 
     private TestActorRef<SimpleClusterListener> unitUnderTest;
 
-    @Mock Member mockClusterMember;
-    @Mock ClusterEvent.MemberRemoved mockClusterMemberRemovedMsg;
-    @Mock ClusterEvent.MemberUp mockClusterMemberUpMsg;
-    @Mock ClusterEvent.UnreachableMember mockUnreachableEvent;
+    @Mock Member mockMember;
+    @Mock ClusterEvent.MemberRemoved msgRemoved;
+    @Mock ClusterEvent.MemberUp msgUp;
+    @Mock ClusterEvent.UnreachableMember unreachable;
 
     @Before
     public void setUp() throws Exception {
         unitUnderTest = TestActorRef.create(system, Props.create(SimpleClusterListener.class), "clusterTest");
-        Address myAddress = new Address("mock", "mock");
-        when(mockClusterMember.address()).thenReturn(myAddress);
-        when(mockClusterMemberUpMsg.member()).thenReturn(mockClusterMember);
-        when(mockClusterMemberRemovedMsg.member()).thenReturn(mockClusterMember);
+        Address myAddress = new Address("test", "test");
+        when(mockMember.address()).thenReturn(myAddress);
+        when(msgRemoved.member()).thenReturn(mockMember);
+        when(msgUp.member()).thenReturn(mockMember);
     }
 
     @Test
     public void testRemovedOrAdded() throws Exception {
-        akka.pattern.Patterns.ask(unitUnderTest, mockClusterMemberUpMsg, 3000);
-        akka.pattern.Patterns.ask(unitUnderTest, mockClusterMemberRemovedMsg, 3000);
+        akka.pattern.Patterns.ask(unitUnderTest, msgUp, 5000);
+        akka.pattern.Patterns.ask(unitUnderTest, msgRemoved, 5000);
         system.shutdown();
     }
 
     @Test
     public void testUnreachable() throws Exception {
-        akka.pattern.Patterns.ask(unitUnderTest, mockUnreachableEvent, 3000);
+        akka.pattern.Patterns.ask(unitUnderTest, unreachable, 5000);
         system.shutdown();
     }
 
@@ -64,13 +64,13 @@ import static org.mockito.Mockito.when;
         ObjectOutput out = new ObjectOutputStream(bos);
         out.writeObject(new ForwardedMessage("test"));
         byte[] msgBytes = bos.toByteArray();
-        akka.pattern.Patterns.ask(unitUnderTest, msgBytes, 3000);
+        akka.pattern.Patterns.ask(unitUnderTest, msgBytes, 5000);
         system.shutdown();
     }
 
     @Test
     public void messageSend() throws Exception{
-        akka.pattern.Patterns.ask(unitUnderTest, new ForwardedMessage("test"), 3000);
+        akka.pattern.Patterns.ask(unitUnderTest, new ForwardedMessage("test"), 5000);
         system.shutdown();
     }
 

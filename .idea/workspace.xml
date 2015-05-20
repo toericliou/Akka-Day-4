@@ -22,11 +22,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AkkaSavableListener.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AkkaSavableListener.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/jenkinsci/plugins/AkkaListeners/AkkaListeners/AkkaSavableListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5394191">
+            <state vertical-scroll-proportion="0.0">
               <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SimpleClusterListenerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/SimpleClusterListenerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.41908714">
+              <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -67,11 +77,11 @@
         <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/ItemListenerActorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/RunListenerActorTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/SavableListenerActorTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/SimpleClusterListenerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/AkkaPluginTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/jenkinsci/plugins/AkkaListeners/AkkaListeners/AkkaBuildListener.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/AkkaListeners/AkkaBuildListenerTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/AkkaListeners/AkkaRunListenerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/SimpleClusterListenerTest.java" />
       </list>
     </option>
   </component>
@@ -1131,6 +1141,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5869191">
           <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding>
+            <element signature="e#2189#2190#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1282,14 +1295,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/SimpleClusterListenerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/jenkinsci/plugins/AkkaListeners/AkkaPlugin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1372,8 +1377,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/jenkinsci/plugins/AkkaListeners/AkkaListeners/AkkaSavableListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5394191">
+        <state vertical-scroll-proportion="0.0">
           <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/jenkinsci/plugins/AkkaListeners/ActorRefs/SimpleClusterListenerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41908714">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
           <folding />
         </state>
       </provider>
